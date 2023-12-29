@@ -1,0 +1,6 @@
+package com.test.task.expandapis_testtask.config;
+
+import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
+
+public class SecurityInitializer extends AbstractSecurityWebApplicationInitializer {
+}
