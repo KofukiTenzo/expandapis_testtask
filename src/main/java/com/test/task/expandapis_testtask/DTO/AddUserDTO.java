@@ -1,6 +1,6 @@
-package com.test.task.expandapis_testtask.services;
+package com.test.task.expandapis_testtask.DTO;
 
-public class AddUser {
+public class AddUserDTO {
     private String username;
 
     private String password;

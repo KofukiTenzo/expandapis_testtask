@@ -67,21 +67,4 @@ public class SecurityConfig {
 
         return source;
     }
-
-//
-//    @Autowired
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
-//
-//    @Autowired
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.jdbcAuthentication()
-//                .dataSource(dataSource)
-//                .usersByUsernameQuery(
-//                        "select username, password, true from user where username=?")
-//                .authoritiesByUsernameQuery(
-//                        "select username, 'ROLE_USER' from user where username=?")
-//                .passwordEncoder(passwordEncoder());
-//    }
 }

@@ -1,6 +1,9 @@
 package com.test.task.expandapis_testtask.web;
 
-import com.test.task.expandapis_testtask.DAO.User;
+import com.test.task.expandapis_testtask.Entitys.User;
+import com.test.task.expandapis_testtask.Response.ResponseUser;
+import com.test.task.expandapis_testtask.DTO.AddUserDTO;
+import com.test.task.expandapis_testtask.DTO.UserAuthenticationDTO;
 import com.test.task.expandapis_testtask.services.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,26 +25,26 @@ public class UserController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Response> register(@RequestBody AddUser addUser) {
-        User registeredUser = authenticationService.signup(addUser);
+    public ResponseEntity<ResponseUser> register(@RequestBody AddUserDTO addUserDTO) {
+        User registeredUser = authenticationService.signup(addUserDTO);
 
-        Response registerResponse = new Response();
-        registerResponse.setUsername(registeredUser.getUsername());
-        registerResponse.setPassword(registeredUser.getPassword());
+        ResponseUser registerResponseUser = new ResponseUser();
+        registerResponseUser.setUsername(registeredUser.getUsername());
+        registerResponseUser.setPassword(registeredUser.getPassword());
 
-        return ResponseEntity.ok(registerResponse);
+        return ResponseEntity.ok(registerResponseUser);
     }
 
     @PostMapping("/authenticate")
-    public ResponseEntity<Response> authenticate(@RequestBody UserAuthentication userAuthentication) {
-        User authenticatedUser = authenticationService.authenticate(userAuthentication);
+    public ResponseEntity<ResponseUser> authenticate(@RequestBody UserAuthenticationDTO userAuthenticationDTO) {
+        User authenticatedUser = authenticationService.authenticate(userAuthenticationDTO);
 
         String jwtToken = jwtService.generateToken(authenticatedUser);
 
-        Response loginResponse = new Response();
-        loginResponse.setUsername(authenticatedUser.getUsername());
-        loginResponse.setPassword(authenticatedUser.getPassword());
+        ResponseUser loginResponseUser = new ResponseUser();
+        loginResponseUser.setUsername(authenticatedUser.getUsername());
+        loginResponseUser.setPassword(authenticatedUser.getPassword());
 
-        return ResponseEntity.ok(loginResponse);
+        return ResponseEntity.ok(loginResponseUser);
     }
 }

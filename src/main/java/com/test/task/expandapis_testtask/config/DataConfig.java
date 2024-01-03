@@ -31,7 +31,7 @@ public class DataConfig {
         LocalContainerEntityManagerFactoryBean em
                 = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan("com.test.task.expandapis_testtask.DAO");
+        em.setPackagesToScan("com.test.task.expandapis_testtask.Entitys");
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);

@@ -1,6 +1,7 @@
-package com.test.task.expandapis_testtask.services;
+package com.test.task.expandapis_testtask.Response;
 
-public class UserAuthentication {
+public class ResponseUser {
+
     private String username;
     private String password;
 
