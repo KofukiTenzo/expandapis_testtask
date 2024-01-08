@@ -1,6 +1,7 @@
 package com.test.task.expandapis_testtask.web;
 
 import com.test.task.expandapis_testtask.Entitys.User;
+import com.test.task.expandapis_testtask.Response.LoginResponse;
 import com.test.task.expandapis_testtask.Response.ResponseUser;
 import com.test.task.expandapis_testtask.DTO.AddUserDTO;
 import com.test.task.expandapis_testtask.DTO.UserAuthenticationDTO;
@@ -36,15 +37,15 @@ public class UserController {
     }
 
     @PostMapping("/authenticate")
-    public ResponseEntity<ResponseUser> authenticate(@RequestBody UserAuthenticationDTO userAuthenticationDTO) {
+    public ResponseEntity<LoginResponse> authenticate(@RequestBody UserAuthenticationDTO userAuthenticationDTO) {
         User authenticatedUser = authenticationService.authenticate(userAuthenticationDTO);
 
         String jwtToken = jwtService.generateToken(authenticatedUser);
 
-        ResponseUser loginResponseUser = new ResponseUser();
-        loginResponseUser.setUsername(authenticatedUser.getUsername());
-        loginResponseUser.setPassword(authenticatedUser.getPassword());
+        LoginResponse loginResponse = new LoginResponse();
+        loginResponse.setToken(jwtToken);
+        loginResponse.setExpiresIn(jwtService.getExpirationTime());
 
-        return ResponseEntity.ok(loginResponseUser);
+        return ResponseEntity.ok(loginResponse);
     }
 }

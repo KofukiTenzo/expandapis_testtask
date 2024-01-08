@@ -8,15 +8,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Map;
-
 @Controller
 @RequestMapping("/products")
 public class ProductsController {
 
     @Autowired
     ProductsService productsService;
+
+    public ProductsController(ProductsService productsService) {
+        this.productsService = productsService;
+    }
 
     @PostMapping("/add")
     public ResponseEntity<String> saveRecords(@RequestBody ProductsDTO payload) {
